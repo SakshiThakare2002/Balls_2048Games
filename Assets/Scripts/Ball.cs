@@ -14,7 +14,6 @@ public class Ball : MonoBehaviour
         textMeshPro = GetComponentInChildren<TextMeshPro>();
     }
 
-    
     public void SetValue(int value)
     {
         this.value = value;
@@ -86,7 +85,6 @@ public class Ball : MonoBehaviour
             GameManager.Instance.AddScore(this.value);
         }
         
-
         Vector3 spawnPosition = transform.position;
         BallSpawner.Instance.SpawnMergedBall(newValue, contactPointPosition);
 
@@ -98,7 +96,4 @@ public class Ball : MonoBehaviour
         Destroy(this.gameObject);
         Destroy(otherBall.gameObject);
     }
-
-
-
 }

@@ -749,6 +749,7 @@ GameObject:
   - component: {fileID: 137906624}
   - component: {fileID: 137906623}
   - component: {fileID: 137906622}
+  - component: {fileID: 137906625}
   m_Layer: 0
   m_Name: LevelUpScreen
   m_TagString: Untagged
@@ -840,6 +841,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &137906625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137906620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91fc844416cc24a7d95920b4b13bd48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bg: {fileID: 0}
+  content: {fileID: 0}
+  isActive: 0
+  ContinueButton: {fileID: 1261983581}
 --- !u!1 &140431632
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,6 +912,8 @@ MonoBehaviour:
     screenName: 2
   - screen: {fileID: 2013240421}
     screenName: 3
+  - screen: {fileID: 137906625}
+    screenName: 4
   startScreen: 1
   popupList: []
   listOfCurrentPopups: []
@@ -2792,6 +2811,8 @@ MonoBehaviour:
   spawnDelay: 0.5
   fallSpeed: 300
   spawnedBalls: []
+  isInput: 0
+  canRelease: 0
 --- !u!4 &1310685903
 Transform:
   m_ObjectHideFlags: 0
@@ -3400,7 +3421,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568150472}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -3894,7 +3915,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3904792, y: 0.87717193}
   m_AnchorMax: {x: 0.597, y: 0.927172}
-  m_AnchoredPosition: {x: 0, y: 0.6861572}
+  m_AnchoredPosition: {x: 0, y: 0.68603516}
   m_SizeDelta: {x: -3.6663017, y: 2.1905975}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1745215314

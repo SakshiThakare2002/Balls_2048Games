@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using Yudiz.StarterKit.Utilities;
+using Yudiz.StarterKit.UI;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -14,6 +15,8 @@ public class GameManager : Singleton<GameManager>
     public delegate void ScoreUpdate(int score, int level);
     public event ScoreUpdate OnScoreUpdate;
 
+    private int nextLevelScoreThreshold; // Tracks score required for the next level
+
     private void Start()
     {
         Init();
@@ -23,6 +26,7 @@ public class GameManager : Singleton<GameManager>
     {
         ResetScore();
         ResetLevel();
+        nextLevelScoreThreshold = level * scoreToLevelUp; // Initialize based on current level
     }
 
     public void AddScore(int ballValue)
@@ -30,9 +34,13 @@ public class GameManager : Singleton<GameManager>
         int scoreIncrement = (int)Mathf.Log(ballValue, 2);
         score += scoreIncrement;
 
-        if (score / scoreToLevelUp >= level)
+        //if (score / scoreToLevelUp >= level)
+        if (score >= nextLevelScoreThreshold)
         {
             level++;
+            nextLevelScoreThreshold += scoreToLevelUp; // Update for the next level
+            UIManager.Instance.ShowScreen(ScreenName.LevelUpScreen);
+            GameStateManager.Instance.ChangeGameState(GameState.Pause);
         }
 
         if (OnScoreUpdate != null)
@@ -49,10 +57,12 @@ public class GameManager : Singleton<GameManager>
     public void ResetScore()
     {
         score = 0;
+        nextLevelScoreThreshold = level * scoreToLevelUp; // Ensure threshold matches the current level
     }
 
     public void ResetLevel()
     {
         level = 1;
+        nextLevelScoreThreshold = scoreToLevelUp;
     }
 }

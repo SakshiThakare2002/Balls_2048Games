@@ -16,9 +16,6 @@ namespace Yudiz.StarterKit.UI
         [SerializeField] private Button RetryButton;
 
         
-
-       
-
         private IEnumerator WaitForGameManager()
         {
             while (GameManager.Instance == null)
@@ -62,7 +59,6 @@ namespace Yudiz.StarterKit.UI
             BallSpawner.Instance.ClearAllBalls();
             BallSpawner.Instance.SpawnNewBall();
             
-
             UIManager.Instance.ShowScreen(ScreenName.MainScreen);
             GameStateManager.Instance.ChangeGameState(GameState.Gameplay);
         }
@@ -70,7 +66,7 @@ namespace Yudiz.StarterKit.UI
         public override void Hide()
         {
             base.Hide();
-            GameManager.Instance.OnScoreUpdate += UpdateScoreAndLevel;
+            GameManager.Instance.OnScoreUpdate -= UpdateScoreAndLevel;
             HomeButton.onClick.RemoveListener(OnHomeButtonPress);
             RetryButton.onClick.RemoveListener(OnRetryButtonPress);
         }

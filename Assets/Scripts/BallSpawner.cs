@@ -12,11 +12,9 @@ public class BallSpawner : MonoBehaviour
     [SerializeField] private float spawnDelay = 0.8f;
     [SerializeField] private float fallSpeed = 300f;
 
-
-    // [SerializeField] private GameObject gameOverUI; // Game Over UI panel
-    public List<GameObject> spawnedBalls = new List<GameObject>();
-
     private GameObject activeBall = null;
+
+    public List<GameObject> spawnedBalls = new List<GameObject>();
     public bool isInput = false;
     public bool canRelease = false;
 
@@ -59,20 +57,23 @@ public class BallSpawner : MonoBehaviour
     {
         if (activeBall == null) return;
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            canRelease = true;
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    canRelease = true;
+        //}
 
         if (Input.GetMouseButton(0))
         {
             MoveBallWithMouse();
+            canRelease = true;
         }
 
         if (Input.GetMouseButtonUp(0) && canRelease)
         {
             ReleaseBall();
+            canRelease = false;
         }
+
     }
 
     private void MoveBallWithMouse()
@@ -135,7 +136,6 @@ public class BallSpawner : MonoBehaviour
     {
         activeBall = null;
 
-        //Trigger spawning after the merge
         StartCoroutine(SpawnBallAfterDelay());
     }
 
